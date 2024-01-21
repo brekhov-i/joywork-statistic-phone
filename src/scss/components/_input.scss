@@ -1,0 +1,28 @@
+.input {
+  width: 100%;
+  height: 37px;
+  border-radius: 6px;
+  border: 1px solid #DEDEDE;
+  background-color: #ffffff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sp-input {
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+
+  &__label {
+    color: var(--color-black);
+    leading-trim: both;
+    text-edge: cap;
+    font-size: 15px;
+    font-weight: 600;
+  }
+}

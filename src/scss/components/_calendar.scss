@@ -1,0 +1,34 @@
+.datepicker {
+  width: auto;
+  height: auto;
+
+  &-input {
+    width: 77px;
+    border: none;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    leading-trim: both;
+    text-edge: cap;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &-calendar {
+    top: calc(100% + 14px);
+    left: -38px;
+    border-radius: 6px;
+    border-color: var(--color-light-grey) !important;
+
+    .cell:hover {
+      border-color: var(--color-primary) !important;
+      border-radius: 100%;
+    }
+    .cell.selected {
+      background-color: var(--color-primary-hover) !important;
+      border-radius: 100%;
+    }
+  }
+}

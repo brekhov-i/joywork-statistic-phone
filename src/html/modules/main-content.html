@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="main-content__head">
+        <span class="main-content__title">Результат поиска:</span>
+        <span class="main-content__tag">Найдено 8000 звонков</span>
+    </div>
+    <div class="main-content__table">
+        <sp-table :data="viewDataTable"></sp-table>
+    </div>
+    <div class="main-content__footer">
+        <div class="main-content__footer-count">
+            <sp-dropdown :options="count.countOptions" :value="count.countV" @selected="count.countV = $event">
+                <template #icon>
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 5.75C14 5.878 13.951 6.006 13.8535 6.1035L8.3535 11.6035C8.158 11.799 7.842 11.799 7.6465 11.6035L2.1465 6.1035C1.951 5.908 1.951 5.592 2.1465 5.3965C2.342 5.201 2.658 5.201 2.8535 5.3965L8 10.543L13.1465 5.3965C13.342 5.201 13.658 5.201 13.8535 5.3965C13.951 5.494 14 5.622 14 5.75Z" fill="#757575"/>
+                    </svg>
+                </template>
+            </sp-dropdown>
+        </div>
+        <paginate
+            :page-count="countPage"
+            :container-class="'pagination'"
+            :page-class="'pagination-page'"
+            :page-link-class="'pagination-page__link'"
+            :prev-class="'pagination-prev'"
+            prev-text='
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.75 14C10.622 14 10.494 13.951 10.3965 13.8535L4.8965 8.3535C4.701 8.158 4.701 7.842 4.8965 7.6465L10.3965 2.1465C10.592 1.951 10.908 1.951 11.1035 2.1465C11.299 2.342 11.299 2.658 11.1035 2.8535L5.957 8L11.1035 13.1465C11.299 13.342 11.299 13.658 11.1035 13.8535C11.006 13.951 10.878 14 10.75 14Z" fill="#757575"/>
+                </svg>
+            '
+            :next-class="'pagination-next'"
+            next-text='
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.25 14C5.378 14 5.506 13.951 5.6035 13.8535L11.1035 8.3535C11.299 8.158 11.299 7.842 11.1035 7.6465L5.6035 2.1465C5.408 1.951 5.092 1.951 4.8965 2.1465C4.701 2.342 4.701 2.658 4.8965 2.8535L10.043 8L4.8965 13.1465C4.701 13.342 4.701 13.658 4.8965 13.8535C4.994 13.951 5.122 14 5.25 14Z" fill="#757575"/>
+                </svg>
+            '
+            :active-class="'pagination-page--active'"
+            :click-handler="setNewPage"
+        >
+        </paginate>
+    </div>
+</div>

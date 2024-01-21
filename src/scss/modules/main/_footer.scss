@@ -1,0 +1,21 @@
+.main-content__footer {
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+
+  &-count {
+    width: 63px;
+
+    .dropdown {
+      &__input {
+        padding: 10px;
+      }
+    }
+  }
+
+  &__pagination {
+    width: auto;
+  }
+}

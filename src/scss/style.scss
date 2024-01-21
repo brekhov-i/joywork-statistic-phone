@@ -1,0 +1,41 @@
+@import "./function";
+@import "./mixins";
+@import "./fonts";
+@import "./vars";
+@import "./resets";
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+
+  &-title {
+    font-size: 32px;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 50px;
+  }
+
+  &-filters {
+    margin-bottom: 50px;
+  }
+}
+
+//Components
+@import "./components/_input";
+@import './components/_dropdown';
+@import "./components/_calendar";
+@import "./components/_checkbox";
+@import "./components/_button";
+@import "./components/_pagination";
+@import "./components/_table";
+
+//Modules
+@import "./modules/filters";
+@import './modules/main/main';
+@import './modules/main/footer';

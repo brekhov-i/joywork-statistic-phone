@@ -1,0 +1,43 @@
+.filters {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 30px;
+
+  &__row {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px ;
+  }
+
+  &__period {
+    width: 300px;
+  }
+
+  &__date {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid var(--color-light-grey);
+    padding: 10px;
+    gap: 10px;
+    &-icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  &__record {
+    margin-bottom: 4px;
+  }
+  &__responsible, &__incoming, &__duration, &__status {
+    width: 250px;
+  }
+}
