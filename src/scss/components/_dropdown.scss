@@ -9,7 +9,11 @@
   gap: 20px;
 
   &--openList &__input {
-    border-radius: 6px 6px 0px 0px;
+    border-radius: 6px 6px 0 0;
+  }
+
+  &--listTop#{&}--openList &__input {
+    border-radius: 0 0 6px 6px;
   }
 
   &__label {
@@ -29,6 +33,12 @@
       width: 16px;
       height: 16px;
       margin-left: auto;
+    }
+
+    input {
+      border: none;
+      background-color: transparent;
+      outline: none;
     }
   }
 
@@ -50,12 +60,24 @@
     transition: 0.3s all ease-in-out;
     z-index: 4;
 
+    &--top {
+      bottom: calc(100% - 1px);
+      top: auto;
+      transform: translateY(30px);
+      transition: 0.3s all ease-in-out;
+      border-radius: 6px 6px 0 0;
+    }
+
     &--open {
       opacity: 1;
       visibility: visible;
       transform: translateY(0px);
       transition: 0.3s all ease-in-out;
       z-index: 4;
+    }
+
+    &--top#{&}--open {
+      transform: translateY(0);
     }
 
     .list-item {

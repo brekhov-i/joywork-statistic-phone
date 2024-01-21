@@ -22,7 +22,12 @@ new Vue({
         {title: 'Неделю назад', value: 'a_week_ago'},
       ]
     },
-    responsibleOptions: [],
+    responsibleOptions: [
+      {title: 'Александр', value: 'alexander'},
+      {title: 'Николай', value: 'nikolay'},
+      {title: 'Мария', value: 'maria'},
+      {title: 'Олег', value: 'oleg'},
+    ],
     incomingOptions: [],
     durationOptions: [],
     statusOptions: [],
@@ -58,10 +63,10 @@ new Vue({
         date: 1705662199000,
         name: 'Константинов Константин Константинович',
         status: {
-          name: 'answered',
-          title: 'Отвечен'
+          name: 'rejected',
+          title: 'Не отвечен'
         },
-        type: 'input',
+        type: 'outgoing',
         duration: 5076,
         record: null,
         operator: 'megafon',

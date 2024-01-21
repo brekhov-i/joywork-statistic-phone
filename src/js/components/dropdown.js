@@ -3,7 +3,8 @@ export default Vue.component('sp-dropdown', {
    'options',
    'title',
    'icon',
-   'value'
+   'value',
+   'is-search'
   ],
   emits: [
    'selected'
@@ -11,15 +12,13 @@ export default Vue.component('sp-dropdown', {
   template: `
     <div 
       class="dropdown"
-      :class="{
-        'dropdown--openList': isOpenList 
-      }"
       ref="dropdown"
     >
         <div class="dropdown__label" v-if="title">{{ title }}</div>
-        <div class="input dropdown__input" @click="isOpenList = !isOpenList">
-            {{ selectedItem.title }}
-            <div class="dropdown__input-icon">
+        <div class="input dropdown__input" @click="!isSearch ? isOpenList = !isOpenList : ''">
+            <input type="text" v-if="isSearch" v-model="input" @input="filterList($event)" @focus="isOpenList = true">
+            <template v-if="!isSearch">{{ input }}</template>
+            <div class="dropdown__input-icon" @click="isSearch ? isOpenList = !isOpenList : ''">
                 <slot name="icon" /> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none" v-if="!this.$slots.icon">
                   <path d="M15.375 7.875H0.625C0.279813 7.875 0 8.15481 0 8.5C0 8.84519 0.279813 9.125 0.625 9.125H15.375C15.7202 9.125 16 8.84519 16 8.5C16 8.15481 15.7202 7.875 15.375 7.875Z" fill="#9E9E9E"/>
@@ -30,13 +29,11 @@ export default Vue.component('sp-dropdown', {
         </div>
         <ul 
           class="dropdown__list"
-          :class="{
-            'dropdown__list--open': isOpenList
-          }"
+          ref="dropdownList"
         >
             <li 
               class="list-item" 
-              v-for="item in options" 
+              v-for="item in filteredList" 
               :key="item.value"
               @click="selectItem(item)"
               :class="{
@@ -50,6 +47,8 @@ export default Vue.component('sp-dropdown', {
     return {
       isOpenList: false,
       selectedItem: this.value,
+      filteredList: [],
+      input: ""
     }
   },
   methods: {
@@ -57,9 +56,35 @@ export default Vue.component('sp-dropdown', {
       this.selectedItem = item;
       this.$emit('selected', item);
       this.isOpenList = !this.isOpenList;
+    },
+    filterList(input) {
+      this.filteredList = this.options.filter(el => el.title.toUpperCase().includes(input.target.value ? input.target.value.toUpperCase() : ''))
+    }
+  },
+  watch: {
+    value: function(val) {
+      this.input = val.title;
+    },
+    isOpenList: function(val) {
+      if(val) {
+        this.$refs.dropdown.classList.add('dropdown--openList')
+        this.$refs.dropdownList.classList.add('dropdown__list--open')
+        const top = this.$refs.dropdownList.getBoundingClientRect().top + this.$refs.dropdownList.getBoundingClientRect().height;
+
+
+        if(top > window.innerHeight + 50 && !this.$refs.dropdownList.classList.contains('dropdown__list--top')) {
+          this.$refs.dropdownList.classList.add('dropdown__list--top')
+          this.$refs.dropdown.classList.add('dropdown--listTop')
+        }
+      } else {
+        this.$refs.dropdown.classList.remove('dropdown--openList')
+        this.$refs.dropdownList.classList.remove('dropdown__list--open')
+      }
     }
   },
   mounted: function () {
+    if(this.value) this.input = this.value.title;
+    this.filteredList = this.options;
     document.addEventListener('click', e => {
       if(!e.composedPath().includes(this.$refs.dropdown)) this.isOpenList = false
     })

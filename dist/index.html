@@ -74,7 +74,14 @@
         <sp-checkbox title="Запись звонка" positionlabel="left" id="1" class="filters__record" @check="filters.isRecord = $event"></sp-checkbox>
     </div>
     <div class="filters__row">
-        <sp-dropdown :options="responsibleOptions" :value="filters.responsible" @selected="filters.responsible = $event" title="Ответсвенный" class="filters__responsible"></sp-dropdown>
+        <sp-dropdown
+            :options="responsibleOptions"
+            :value="filters.responsible"
+            :is-search="true"
+            @selected="filters.responsible = $event"
+            title="Ответсвенный"
+            class="filters__responsible"
+        ></sp-dropdown>
         <sp-input value="phoneOn" title="Номер, на который был звонок" @input="filters.phoneOn = $event"></sp-input>
         <sp-input value="phoneOn" title="Телефон, кто звонил" @input="filters.phoneInput = $event"></sp-input>
         <sp-dropdown :options="incomingOptions" :value="filters.incoming" @selected="filters.incoming = $event" title="Входящие / исходящие" class="filters__incoming"></sp-dropdown>
@@ -137,9 +144,6 @@
     <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
     <script src="https://unpkg.com/vuejs-paginate@latest"></script>
     <script src="https://unpkg.com/vuetable-2@next"></script>
-    
-    
-        <script src="./js/main.js"></script>
-    
+    <script src="./js/main.js"></script>
 </body>
 </html>

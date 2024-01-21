@@ -59,6 +59,14 @@ ul, ol {
   list-style: none;
 }
 
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
 .container {
   width: 100%;
   height: 100%;
@@ -67,7 +75,11 @@ ul, ol {
 
 .app {
   width: 100vw;
-  height: 100vh;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
 }
 .app-title {
   font-size: 32px;
@@ -118,7 +130,10 @@ ul, ol {
   gap: 20px;
 }
 .dropdown--openList .dropdown__input {
-  border-radius: 6px 6px 0px 0px;
+  border-radius: 6px 6px 0 0;
+}
+.dropdown--listTop.dropdown--openList .dropdown__input {
+  border-radius: 0 0 6px 6px;
 }
 .dropdown__label {
   font-size: 15px;
@@ -136,6 +151,11 @@ ul, ol {
   width: 16px;
   height: 16px;
   margin-left: auto;
+}
+.dropdown__input input {
+  border: none;
+  background-color: transparent;
+  outline: none;
 }
 .dropdown__list {
   position: absolute;
@@ -155,12 +175,22 @@ ul, ol {
   transition: 0.3s all ease-in-out;
   z-index: 4;
 }
+.dropdown__list--top {
+  bottom: calc(100% - 1px);
+  top: auto;
+  transform: translateY(30px);
+  transition: 0.3s all ease-in-out;
+  border-radius: 6px 6px 0 0;
+}
 .dropdown__list--open {
   opacity: 1;
   visibility: visible;
   transform: translateY(0px);
   transition: 0.3s all ease-in-out;
   z-index: 4;
+}
+.dropdown__list--top.dropdown__list--open {
+  transform: translateY(0);
 }
 .dropdown__list .list-item {
   width: 100%;
@@ -386,13 +416,18 @@ ul, ol {
 }
 
 .table {
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 437px;
   border-radius: 3px;
   overflow-x: scroll;
 }
 .table__wrapper {
   width: max-content;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -411,7 +446,7 @@ ul, ol {
 }
 .table__body {
   width: 100%;
-  height: 390px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -432,6 +467,14 @@ ul, ol {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.table__body .table__col a {
+  color: #2F6C31;
+  text-decoration: underline;
+  pointer-events: auto;
+}
+.table__body .table__col button {
+  pointer-events: auto;
 }
 .table__row {
   width: 100%;
