@@ -1,7 +1,8 @@
 
 export default Vue.component('sp-table', {
   props: [
-   'data'
+   'data',
+   'count'
   ],
   emits: [
 
@@ -179,4 +180,14 @@ export default Vue.component('sp-table', {
       }
     }
   },
+  watch: {
+    count: function(val) {
+      console.log(this.$refs.tableWrapper.getBoundingClientRect().height)
+      this.$refs.table.style.height = `${this.$refs.tableWrapper.getBoundingClientRect().height + 36.5}px`
+    }
+  },
+  mounted() {
+    console.log(this.$refs.tableWrapper.getBoundingClientRect().height)
+    this.$refs.table.style.height = `${this.$refs.tableWrapper.getBoundingClientRect().height + 36.5}px`
+  }
 })

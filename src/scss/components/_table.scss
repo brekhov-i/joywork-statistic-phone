@@ -4,6 +4,7 @@
   height: 437px;
   border-radius: 3px;
   overflow-x: scroll;
+  overflow-y: scroll;
 
   &__wrapper {
     width: max-content;
@@ -32,13 +33,12 @@
 
   &__body {
     width: 100%;
-    height: 400px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
 
     .table__row {
       &:nth-child(2n) {
